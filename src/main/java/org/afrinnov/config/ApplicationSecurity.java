@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
@@ -22,7 +23,9 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf()       
         .and().       
-        authorizeRequests().antMatchers("/login").permitAll().anyRequest()
+        authorizeRequests()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/login").permitAll().anyRequest()
                 .fullyAuthenticated()
                 .and()
                 .formLogin().loginPage("/login")
@@ -39,6 +42,13 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     public SessionRegistry sessionRegistry() {
         SessionRegistry sessionRegistry = new SessionRegistryImpl();
         return sessionRegistry;
+    }
+    
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**");
     }
     
   

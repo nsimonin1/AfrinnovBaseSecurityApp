@@ -14,17 +14,19 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
-    @Override
+    /*@Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/access").setViewName("access");
-    }
-    @Override
+    }*/
+    
+    
+   /* @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("classpath:/resources/static/**")
                 .addResourceLocations("(/resources/")
                 //.addResourceLocations("/")
                 ;
-    }
+    }*/
 }

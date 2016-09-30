@@ -3,5 +3,7 @@ spring:
     cache: false
 
 logging:
-   level:
-      org.springframework.security: INFO
+  level:
+    root: WARN
+    org.springframework.web: INFO
+    org.springframework.security: INFO
